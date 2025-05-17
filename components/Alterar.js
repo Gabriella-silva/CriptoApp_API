@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState} from 'react';
 import {View, TextInput, Button, Alert } from "react-native";
 import {updateCripto} from './Api';
 
@@ -20,10 +20,9 @@ export default function Alterar({ route, navigation }) {
                 {text:'Cancelar', style:'cancel'},
                 {
                     text:'Alterar',
-                    onPress:( ) => updateCripto 
+                    onPress:( ) => updateCripto(cripto.codigo, updateData, navigation),
                 },
             ]
-
         );
     };
 
@@ -31,7 +30,14 @@ export default function Alterar({ route, navigation }) {
         <View>
             <TextInput
             placeholder="Nome da Cripto"
-            value={}
+            value={nomeCripto}
+            />
+        <TextInput
+        placeholder="Sigla da Cripto"
+        value={siglaCripto}
+        onChangeText={setSiglaCripto}
+        />
+        <Button title="Alterar" onPress={handleUpdate} />
         </View>
-    )
+    );
 }
